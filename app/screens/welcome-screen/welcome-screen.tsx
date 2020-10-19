@@ -1,15 +1,26 @@
 import React, { FunctionComponent as Component } from "react"
-import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
+import {
+  View,
+  Image,
+  ViewStyle,
+  TextStyle,
+  ImageStyle,
+  SafeAreaView,
+  FlatList,
+  TouchableOpacity,
+} from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import { Button, Header, Screen, Text, Wallpaper } from "../../components"
+import { Button, Header, Screen, Text, Wallpaper, ListadoEmpresas } from "../../components"
 import { color, spacing, typography } from "../../theme"
+import { useStores } from "../../models"
+import { TheGameScreen } from "../the-game-screen"
 const bowserLogo = require("./bowser.png")
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
-  paddingHorizontal: spacing[4],
+  paddingHorizontal: spacing[0],
 }
 const TEXT: TextStyle = {
   color: color.palette.white,
@@ -17,9 +28,10 @@ const TEXT: TextStyle = {
 }
 const BOLD: TextStyle = { fontWeight: "bold" }
 const HEADER: TextStyle = {
-  paddingTop: spacing[3],
+  paddingTop: spacing[4],
   paddingBottom: spacing[4] + spacing[1],
   paddingHorizontal: 0,
+  backgroundColor: "#3BB9FF",
 }
 const HEADER_TITLE: TextStyle = {
   ...TEXT,
@@ -61,7 +73,10 @@ const CONTENT: TextStyle = {
 const CONTINUE: ViewStyle = {
   paddingVertical: spacing[4],
   paddingHorizontal: spacing[4],
-  backgroundColor: "#5D2555",
+  backgroundColor: "#3BB9FF",
+  borderRadius: 10,
+  borderWidth: 1,
+  borderColor: "#FFF",
 }
 const CONTINUE_TEXT: TextStyle = {
   ...TEXT,
@@ -69,7 +84,7 @@ const CONTINUE_TEXT: TextStyle = {
   fontSize: 13,
   letterSpacing: 2,
 }
-const FOOTER: ViewStyle = { backgroundColor: "#20162D" }
+const FOOTER: ViewStyle = { backgroundColor: "#3BB9FF" }
 const FOOTER_CONTENT: ViewStyle = {
   paddingVertical: spacing[4],
   paddingHorizontal: spacing[4],
@@ -77,28 +92,15 @@ const FOOTER_CONTENT: ViewStyle = {
 
 export const WelcomeScreen: Component = observer(function WelcomeScreen() {
   const navigation = useNavigation()
-  const nextScreen = () => navigation.navigate("demo")
+  const nextScreen = () => navigation.navigate("thegame")
 
+  const rootStore = useStores()
   return (
     <View style={FULL}>
       <Wallpaper />
-      <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
+      <Screen style={CONTAINER} preset="scroll" backgroundColor={color.palette.offWhite}>
         <Header headerTx="welcomeScreen.poweredBy" style={HEADER} titleStyle={HEADER_TITLE} />
-        <Text style={TITLE_WRAPPER}>
-          <Text style={TITLE} text="Your new app, " />
-          <Text style={ALMOST} text="almost" />
-          <Text style={TITLE} text="!" />
-        </Text>
-        <Text style={TITLE} preset="header" tx="welcomeScreen.readyForLaunch" />
-        <Image source={bowserLogo} style={BOWSER} />
-        <Text style={CONTENT}>
-          This probably isn't what your app is going to look like. Unless your designer handed you
-          this screen and, in that case, congrats! You're ready to ship.
-        </Text>
-        <Text style={CONTENT}>
-          For everyone else, this is where you'll see a live preview of your fully functioning app
-          using Ignite.
-        </Text>
+        <ListadoEmpresas />
       </Screen>
       <SafeAreaView style={FOOTER}>
         <View style={FOOTER_CONTENT}>

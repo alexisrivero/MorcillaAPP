@@ -1,2 +1,6 @@
 export * from "./welcome-screen/welcome-screen"
 export * from "./demo-screen/demo-screen"
+export * from "./the-game-screen"
+export * from "./empresa-screen"
+export * from "./telefono-screen"
+export * from "./ciudad-screen"

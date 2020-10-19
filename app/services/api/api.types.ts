@@ -1,9 +1,6 @@
 import { GeneralApiProblem } from "./api-problem"
+import { CiudadSnapshot, TelefonoSnapshot, EmpresaSnapshot } from "../../models"
 
-export interface User {
-  id: number
-  name: string
-}
-
-export type GetUsersResult = { kind: "ok"; users: User[] } | GeneralApiProblem
-export type GetUserResult = { kind: "ok"; user: User } | GeneralApiProblem
+export type GetCiudadesResult = { kind: "ok"; ciudades: CiudadSnapshot[] } | GeneralApiProblem
+export type GetTelefonosResult = { kind: "ok"; telefonos: TelefonoSnapshot[] } | GeneralApiProblem
+export type GetEmpresasResult = { kind: "ok"; empresas: EmpresaSnapshot[] } | GeneralApiProblem

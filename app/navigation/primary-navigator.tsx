@@ -7,7 +7,14 @@
 import React from "react"
 
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
-import { WelcomeScreen, DemoScreen } from "../screens"
+import {
+  WelcomeScreen,
+  DemoScreen,
+  TheGameScreen,
+  EmpresaScreen,
+  TelefonoScreen,
+  CiudadScreen,
+} from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -24,6 +31,10 @@ import { WelcomeScreen, DemoScreen } from "../screens"
 export type PrimaryParamList = {
   welcome: undefined
   demo: undefined
+  thegame: undefined
+  empresa: undefined
+  telefono: undefined
+  ciudad: undefined
 }
 
 // Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
@@ -39,6 +50,10 @@ export function PrimaryNavigator() {
     >
       <Stack.Screen name="welcome" component={WelcomeScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
+      <Stack.Screen name="thegame" component={TheGameScreen} />
+      <Stack.Screen name="empresa" component={EmpresaScreen} />
+      <Stack.Screen name="telefono" component={TelefonoScreen} />
+      <Stack.Screen name="ciudad" component={CiudadScreen} />
     </Stack.Navigator>
   )
 }
